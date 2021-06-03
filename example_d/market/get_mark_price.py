@@ -6,6 +6,6 @@ request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
 
 result = request_client.get_mark_price(symbol="btcusd_200925")
 
-print("======= Mark Price =======")
-PrintMix.print_data(result)
-print("==========================")
+#print("======= Mark Price =======")
+#PrintMix.print_data(result)
+#print("==========================")

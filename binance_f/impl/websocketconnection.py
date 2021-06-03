@@ -129,13 +129,13 @@ class WebsocketConnection:
 
     def on_error(self, error_message):
         if self.request.error_handler is not None:
-            print('error')
+            #print('error')
             exception = BinanceApiException(BinanceApiException.SUBSCRIPTION_ERROR, error_message)
             self.request.error_handler(exception)
         self.logger.error("[Sub][" + str(self.id) + "] " + str(error_message))
 
     def on_failure(self, error):
-        print('on_failure')
+        #print('on_failure')
         self.on_error("Unexpected error: " + str(error))
         self.close_on_error()
 

@@ -129,23 +129,23 @@ class WebsocketConnection:
 
     def on_error(self, error_message):
         if self.request.error_handler is not None:
-            print('error')
+            #print('error')
             exception = BinanceApiException(BinanceApiException.SUBSCRIPTION_ERROR, error_message)
             self.request.error_handler(exception)
         self.logger.error("[Sub][" + str(self.id) + "] " + str(error_message))
 
     def on_failure(self, error):
-        print('on_failure')
+        #print('on_failure')
         self.on_error("Unexpected error: " + str(error))
         self.close_on_error()
 
     def on_message(self, message):
         self.last_receive_time = get_current_timestamp()
-        print('Type of message is', type(message))
+        #print('Type of message is', type(message))
         if not isinstance(message, str):
-            print('Decompressing...')
+            #print('Decompressing...')
             message = gzip.decompress(message).decode('utf-8')
-        print(message)
+        #print(message)
         json_wrapper = parse_json_from_string(message)
 
         if json_wrapper.contain_key("method") and json_wrapper.get_string("method") == "PING":
@@ -198,10 +198,10 @@ class WebsocketConnection:
     def __process_ping_on_new_spec(self, ping_ts):
         """Respond on explicit ping frame
         """
-        print("Responding to explicit PING...")
+        #print("Responding to explicit PING...")
         respond_pong_msg = "{\"method\":\"PONG\",\"E\":" + str(ping_ts) + "}"
         self.send(respond_pong_msg)
-        print(respond_pong_msg)
+        #print(respond_pong_msg)
         return
 
     def __process_ping_on_trading_line(self, ping_ts):

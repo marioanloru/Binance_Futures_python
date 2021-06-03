@@ -6,6 +6,6 @@ request_client = RequestClient(api_key=g_api_key, secret_key=g_secret_key)
 
 result = request_client.get_mark_price(symbol="BTCUSDT")
 
-print("======= Mark Price =======")
+#print("======= Mark Price =======")
 PrintBasic.print_obj(result)
-print("==========================")
+#print("==========================")
